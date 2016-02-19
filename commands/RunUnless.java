@@ -1,13 +1,14 @@
 package org.usfirst.frc4904.standard.commands;
 
 
+import java.util.function.BooleanSupplier;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class RunUnless extends CommandGroup {
 	protected final Command command;
-	protected final RunIfLazyBooleanProvider[] booleanProviders;
+	protected final BooleanSupplier[] booleanSuppliers;
 	
 	/**
 	 * Run a command based on a conditional callback.
@@ -15,16 +16,16 @@ public class RunUnless extends CommandGroup {
 	 * new RunIf(new Shoot(), shooter::isUnsafe)
 	 * This double-colon syntax only works in Java 8. If you must use this with an earlier version of Java, use:
 	 * new RunIf(new Shoot(), new BooleanInterface() { boolean evaluate() { return shooter.isUnsafe(); } })
-	 * 
+	 *
 	 * @param command
 	 *        The command to be run if the condition is NOT met
 	 * @param bi
 	 *        A condition function using Java 8's colon syntax (will run unless the condition is true)
 	 */
-	public RunUnless(Command command, RunIfLazyBooleanProvider... booleanProviders) {
+	public RunUnless(Command command, BooleanSupplier... booleanSuppliers) {
 		super("RunUnless[" + command.getName() + "]");
 		this.command = command;
-		this.booleanProviders = booleanProviders;
+		this.booleanSuppliers = booleanSuppliers;
 	}
 	
 	@Override
@@ -34,8 +35,8 @@ public class RunUnless extends CommandGroup {
 	
 	@Override
 	protected void initialize() {
-		for (RunIfLazyBooleanProvider booleanProvider : booleanProviders) {
-			if (booleanProvider.evaluate()) {
+		for (BooleanSupplier booleanProvider : booleanSuppliers) {
+			if (booleanProvider.getAsBoolean()) {
 				return;
 			}
 		}
