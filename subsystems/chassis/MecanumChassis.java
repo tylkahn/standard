@@ -76,7 +76,7 @@ public class MecanumChassis extends Chassis {
 	 *        The direction of the speed in angles clockwise from straight ahead. In the range 0 to 2Pi.
 	 * @param turnSpeed
 	 *        The speed at which the robot will revolve around itself during the maneuver. In the range -1 to 1.
-	 * 
+	 * 		
 	 * @return
 	 * 		An array {frontLeftSpeed, frontRightSpeed, backLeftSpeed, backRightSpeed}
 	 */
