@@ -1,7 +1,6 @@
 package org.usfirst.frc4904.standard.subsystems.chassis;
 
 
-import org.usfirst.frc4904.standard.LogKitten;
 import org.usfirst.frc4904.standard.subsystems.motor.Motor;
 
 /**
@@ -45,7 +44,6 @@ public class TankDrive extends Chassis {
 		double normalize = Math.max(Math.max(Math.abs(speed + turnSpeed), Math.abs(speed - turnSpeed)), 1);
 		double leftSpeed = (speed + turnSpeed) / normalize;
 		double rightSpeed = (speed - turnSpeed) / normalize;
-		LogKitten.wtf("LEFT SPEED = " + leftSpeed + " RIGHT SPEED = " + rightSpeed);
 		if (motors.length == 2) {
 			motorSpeeds = new double[] {leftSpeed, rightSpeed};
 		} else {
