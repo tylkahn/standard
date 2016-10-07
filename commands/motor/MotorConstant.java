@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
  * Runs a motor at a constant speed until interrupted.
  */
 public class MotorConstant extends Command {
-	protected final double motorSpeed;
+	protected double motorSpeed;
 	protected final Motor motor;
 	
 	/**
